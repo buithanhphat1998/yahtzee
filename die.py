@@ -24,5 +24,5 @@ class Die:
         else:
             return False
     def __sub__(self,other): 
-       return abs(self._value - other._value)
+       return self._value - other._value
     

@@ -13,10 +13,9 @@ class Player:
         return self._points
 
     def roll_dice(self):
+        for dice in self._dice:
+            dice.roll
         self._dice.sort()
-        # Testing
-        for index, value in enumerate(self._dice):
-            print(f"Die #{index}: {value}")
     def has_pair(self):
         if(self._dice[0] == self._dice[1] 
            or self._dice[1] == self._dice[2] 
@@ -34,8 +33,8 @@ class Player:
     def has_series(self):
         # If the second element is equal to the first + 1
         # and the second element is equal to the second + 1
-        if(self._dice[1] == self._dice[0] + 1
-           and self._dice[2] == self.dice[1] + 1):
+        if(self._dice[1] - self._dice[0] == 1 
+           and self._dice[2] - self._dice[1] == 1):
             # then increment points by 2
             self._points += 2
             return True
@@ -47,4 +46,4 @@ class Player:
             if(index != 2):
                 string += ', '
         return string
-    name = property(_get_points)
+    points = property(_get_points)
