@@ -14,7 +14,7 @@ class Player:
 
     def roll_dice(self):
         for dice in self._dice:
-            dice.roll
+            dice.roll()
         self._dice.sort()
     def has_pair(self):
         if(self._dice[0] == self._dice[1] 
