@@ -2,20 +2,30 @@ from die import Die
 class Player:
     """
     Attributes: 
-        _dice (Die []): 
-        _points: int
+        Represents a player holding 3 dice and a score.
+
+        _dice (list of Die): the player's dice.
+        _points (int): the player's points.
     """
+
     def __init__(self):
+        # Create 3 dice for the player
         self._dice = [Die(), Die(), Die()]
+        # Start with 0 points
         self._points = 0
 
+        # Getter for points
     def _get_points(self):
         return self._points
 
     def roll_dice(self):
+        # Roll each die in the list.
         for dice in self._dice:
             dice.roll()
+        # Sort dice by their values for easier checking
         self._dice.sort()
+
+    # Check if at least two dice show the same value.
     def has_pair(self):
         if(self._dice[0] == self._dice[1] 
            or self._dice[1] == self._dice[2] 
@@ -24,12 +34,14 @@ class Player:
             self._points += 1
             return True
         return False
+    # Check if all three dice show the same value.
     def has_three_of_a_kind(self):
         if(self._dice[0] == self._dice[1] == self._dice[2]):
             # incremennt points by 3
             self._points += 3
             return True
         return False
+    # Check if the dice values form a series (e.g., 1, 2, 3 or 4, 5, 6).
     def has_series(self):
         # If the second element is equal to the first + 1
         # and the second element is equal to the second + 1
@@ -39,6 +51,7 @@ class Player:
             self._points += 2
             return True
         return False
+    # String representation of the player's dice values.
     def __str__(self): 
         string = ""
         for index, value in enumerate(self._dice):
